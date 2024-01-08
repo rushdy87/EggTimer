@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class ViewController: UIViewController {
     
     var totalTime = 0
     var secondPassed = 0
+
+    var audioPlayer = AVAudioPlayer()
     
     
     @IBAction func herdnessSelected(_ sender: UIButton) {
@@ -47,6 +50,18 @@ class ViewController: UIViewController {
         } else {
             timer.invalidate()
             titleLabel.text = "Done"
+            playSound()
         }
+    }
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")
+
+        audioPlayer = try! AVAudioPlayer(contentsOf: url!)
+
+        audioPlayer.play()
+
+
+
     }
 }
